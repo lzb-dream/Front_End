@@ -1,7 +1,5 @@
 <template>
   <div class="bottom">
-
-
     <div class="bottom-left" @click="showPopup">
       <img v-if="bottomComponentData.songsListData[bottomComponentData.index]" :src="bottomComponentData.songsListData[bottomComponentData.index].songImg" alt="">
       <img v-else src="https://tse2-mm.cn.bing.net/th/id/OIP-C.kOO64kf6YdDrVsP4BvFG3wHaHa?w=195&h=195&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="">
@@ -16,6 +14,7 @@
           <span>听你想听</span>
         </template>
       </div>
+		<div class="bottomClick">点击进入歌词</div>
     </div>
 
     <van-popup v-model:show="show" position="right" :style="{ height: '100%', width: '100%' }" closeable>
@@ -33,7 +32,7 @@
       </svg>
 
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-bofangliebiao"></use>
+		<use xlink:href="#icon-bofangliebiao"></use>
       </svg>
     </div>
   </div>
@@ -75,6 +74,12 @@
         color: #7e7c7c;
       }
     }
+	.bottomClick {
+		margin-left: 40px;
+		font-size: xx-small;
+		font-weight: 300;
+		color: #d7d7d7;
+	}
   }
   .bottom-right {
     display: flex;
@@ -113,11 +118,11 @@ function pauseOrPlay(e) {
     // let songId =
     let targetClassName = e.target.classList.value==='icon iconClick'
     if (targetClassName){
-    if (myStore.state.songsList.playState){
-      audio.value.play()
-    }else {
-      audio.value.pause()
-    }
+	if (myStore.state.songsList.playState){
+		audio.value.play()
+	}else {
+		audio.value.pause()
+	}
     myStore.commit('songsList/changePlayState',!myStore.state.songsList.playState)
   }
   })
